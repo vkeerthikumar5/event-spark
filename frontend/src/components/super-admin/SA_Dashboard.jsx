@@ -12,7 +12,7 @@ export default function SA_Dashboard() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/sa/stats");
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/sa/stats`);
         setStats(res.data);
       } catch (err) {
         console.error(err);

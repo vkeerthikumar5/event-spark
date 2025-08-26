@@ -8,7 +8,7 @@ export default function Activations() {
     useEffect(() => {
         const fetchAdmins = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/admins");
+                const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/admins`);
 
                 setAdmins(res.data);
 
@@ -24,7 +24,7 @@ export default function Activations() {
         if (!confirmAction) return; // If user clicks Cancel, stop here
     
         try {
-            await axios.put(`http://localhost:5000/activate/${id}`);
+            await axios.put(`${import.meta.env.VITE_API_BASE_URL}/activate/${id}`);
             // update state after activation
             setAdmins((prevAdmins) =>
                 prevAdmins.map((admin) =>

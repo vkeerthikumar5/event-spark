@@ -9,7 +9,7 @@ export default function AProfile() {
   useEffect(()=>{
     const fetchInfo=async()=>{
       try{
-      const res=await axios.get(`http://localhost:5000/get_info/${adminId}`)
+      const res=await axios.get(`${import.meta.env.VITE_API_BASE_URL}/get_info/${adminId}`)
       setinfo(res.data)
       console.log(info)}
       

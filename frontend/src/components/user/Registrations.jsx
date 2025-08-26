@@ -13,7 +13,7 @@ export default function Registrations() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/get_user_events/${userId}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/get_user_events/${userId}`);
         setEvents(res.data.events);
       } catch (err) {
         console.error("Error fetching registrations:", err.message);
@@ -29,7 +29,7 @@ export default function Registrations() {
 
   const handleCancel = async (eventId) => {
     try {
-      await axios.delete(`http://localhost:5000/events/${eventId}/cancel`, {
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/events/${eventId}/cancel`, {
         data: { userId }, // axios requires `data` for DELETE body
       });
 

@@ -19,7 +19,7 @@ export default function BrowseEvents() {
 
   const handleRegister = async () => {
     try {
-      await axios.post(`http://localhost:5000/events/${selectedEvent._id}/register`, {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/events/${selectedEvent._id}/register`, {
         userId,
       });
 
@@ -33,7 +33,7 @@ export default function BrowseEvents() {
   useEffect(() => {
     const getevents = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/browse_events/${userId}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/browse_events/${userId}`);
         setEvents(res.data.events);
   
         // store registered event IDs

@@ -7,7 +7,7 @@ export default function EventRegistrations() {
 
   useEffect(() => {
     // Fetch all registrations for this event
-    fetch(`http://localhost:5000/events/${id}/registrations`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/${id}/registrations`)
       .then((res) => res.json())
       .then((data) => setRegistrations(data))
       .catch((err) => console.error(err));

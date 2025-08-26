@@ -11,7 +11,7 @@ export default function View_Events() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/get_events/${adminId}`)
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/get_events/${adminId}`)
         setEvents(res.data.events)
       }
       catch (err) {

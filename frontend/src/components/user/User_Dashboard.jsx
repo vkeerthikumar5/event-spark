@@ -13,7 +13,7 @@ export default function User_Dashboard() {
   useEffect(()=>{
     const fetch_details=async()=>{
       try{
-      const res=await axios.get(`http://localhost:5000/get_user_events/${userId}`)
+      const res=await axios.get(`${import.meta.env.VITE_API_BASE_URL}/get_user_events/${userId}`)
       setCount(res.data.totalRegisteredEvents)
       setle(res.data.totalEvents)
 

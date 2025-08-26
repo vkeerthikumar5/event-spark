@@ -8,7 +8,7 @@ export default function Events() {
   useEffect(() => {
     const fetchOrganizers = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/organizers");
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/organizers`);
         setData(res.data);
       } catch (err) {
         console.error(err.message);

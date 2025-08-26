@@ -15,7 +15,7 @@ export default function A_Events() {
 
     const eventData = { title, desc, date, location, organizerId };
 
-      const res = await axios.post("http://localhost:5000/events", eventData, {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/events`, eventData, {
         headers: { "Content-Type": "application/json" },
       });
 
