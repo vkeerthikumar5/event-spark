@@ -5,14 +5,26 @@ export default function EventRegistrations() {
   const { id } = useParams(); // event id from URL
   const [registrations, setRegistrations] = useState([]);
 
-  useEffect(() => {
-    // Fetch all registrations for this event
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/${id}/registrations`)
-      .then((res) => res.json())
-      .then((data) => setRegistrations(data))
-      .catch((err) => console.error(err));
-  }, [id]);
+  const fetchRegistrations = async () => {
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/${id}/registrations`
+      );
+      const data = await res.json();
+      setRegistrations(data);
+    } catch (err) {
+      console.error("Error fetching registrations:", err);
+    }
+  };
 
+  useEffect(() => {
+    fetchRegistrations();
+  }, [id])
+if(!registrations){
+  return(<div>
+    Loading...
+  </div>)
+}
   return (
     <div>
     <Sidenav/>

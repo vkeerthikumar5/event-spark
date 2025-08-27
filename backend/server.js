@@ -295,5 +295,22 @@ if (process.env.NODE_ENV !== "production") {
     console.log(`Backend running on http://localhost:${PORT}`);
   });
 }
+app.get("/:id/registrations", async (req, res) => {
+  try {
+    const { id } = req.params;
 
+    const event = await Events.findById(id)
+      .populate("registrations", "name email m_no"); 
+      // populate User details, but only these fields
+
+    if (!event) {
+      return res.status(404).json({ message: "Event not found" });
+    }
+
+    res.json(event.registrations); // just return registrations
+  } catch (err) {
+    console.error("Error fetching registrations:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 export default (req, res) => app(req, res);

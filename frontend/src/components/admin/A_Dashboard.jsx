@@ -11,7 +11,7 @@ export default function A_Dashboard() {
     useEffect(() => {
       const fetchEvents=async()=>{
         try{
-        const res=await axios.get(`${import.meta.env.VITE_API_BASE_URL}/${adminId}`)
+        const res=await axios.get(`${import.meta.env.VITE_API_BASE_URL}/get_events/${adminId}`)
         
         setcount(res.data.count)
       }
