@@ -4,7 +4,7 @@ import User from "./User.js"; // adjust path
 
 const seedSuperAdmin = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/event-spark");
+    await mongoose.connect("mongodb+srv://vkeerthikumar04:1234@cluster0.e7ywss0.mongodb.net/event-spark?retryWrites=true&w=majority&appName=Cluster0");
 
     const existing = await User.findOne({ email: "superadmin@example.com" });
     if (existing) {
@@ -18,6 +18,7 @@ const seedSuperAdmin = async () => {
       name: "Super Admin",
       email: "superadmin@example.com",
       password: hashedPassword,
+      m_no:"979126122",
       role: "super-admin",
     });
 

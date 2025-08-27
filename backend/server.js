@@ -11,7 +11,10 @@ const app = express();
 
 // Middleware
 app.use(cors({
-    origin: "https://event-spark-sigma.vercel.app",  // your frontend origin
+  origin: [
+    "http://localhost:5173",               // local frontend
+    "https://event-spark-sigma.vercel.app" // live frontend
+  ],  // your frontend origin
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
@@ -30,6 +33,9 @@ mongoose
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
+    .then(() => {
+      console.log("MongoDB connected");
+  })
    
     .catch((err) => console.log(err));
 
@@ -282,4 +288,12 @@ app.get("/organizers", async (req, res) => {
     }
   });
   
-  export default (req, res) => app(req, res);
+  const PORT = process.env.PORT || 5000;
+
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log(`Backend running on http://localhost:${PORT}`);
+  });
+}
+
+export default (req, res) => app(req, res);
